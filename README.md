@@ -1,44 +1,67 @@
 # Resume-Selector
 
-Dataset Description: The data was downloaded from the website kaggle. The data is in Excel format, with the three column ID, Category, and Resume.
-ID: The sequence number of the resume
-Category: Industry sector to which the resume belongs to
-Resume: The complete CV of the candidate.
+## Overview
+Resume-Selector is a machine learning project designed to analyze and classify resumes based on industry sectors. Using a dataset from Kaggle, this project employs various preprocessing techniques and machine learning algorithms to streamline the hiring process.
 
+## Features
+- **Data Cleaning:** Remove special characters, stopwords, and irrelevant information from resumes.
+- **Feature Extraction:** Utilize TF-IDF to convert textual data into numerical vectors suitable for machine learning.
+- **Classification:** Implement a machine learning model to categorize resumes by industry.
 
-A.Pre-Processing
-The resume provided as input is included in the final list of this procedure to remove special or unnecessary characters from the resume. words of all unique letters, numbers and single letters are removed during cleanup. After these processes, we had a clean data set with no unique letters, numbers, or single letter words. The NLTK tokenizer is used to partition the dataset into tokens. Stopword removal, heading , and vectorization are among the preprocessing operations performed on the markup data set. Data is masked in the following way:
+## Dataset Description
+The dataset for this project was sourced from Kaggle and is in Excel format, consisting of three columns:
 
+- **ID:** Sequence number of the resume
+- **Category:** Industry sector to which the resume belongs
+- **Resume:** The complete CV of the candidate
 
-Masking the string such as \w
-Masking the escape letters like \n
-Masking all the numbers
-Replace all the single letter words with an empty string
-Mask email addresses
-Stop words are removed
-Lemmatization is performed
-Removing Stop Words: Stopwords like and,the,was etc. are very common in words and are removed as they limit the process of determining predictions.
-Stopword filtering consists of the following:
+## Preprocessing Steps
+The preprocessing of resumes involves several key steps to ensure data quality:
+- **Data Cleaning:**
+   - Remove special characters, single-letter words, and unique letters/numbers from resumes.
+   - Tokenize the text using the NLTK tokenizer.
 
-The input words are tokenized into individual tokens and saved in an array.
+- **Masking:**
+   - Mask strings using `\w`.
+   - Mask escape characters like `\n`.
+   - Mask all numbers.
+   - Remove email addresses.
 
-Each word now corresponds to the Stop Words list in the NLTK library:
-import stopwords from nltk.corpus
-SW[] = set(stopwords.words('english'))
-It returns 180 stop words, which may be confirmed using the (len(StopWords)) function and displayed using the print(StopWords) function.
+- **Stopword Removal:**
+   - Common stopwords (e.g., "and", "the", "was") are removed as they limit prediction accuracy.
+   - Input words are tokenized into individual tokens and checked against the NLTK stopwords list:
+     ```python
+     from nltk.corpus import stopwords
+     stop_words = set(stopwords.words('english'))
+     ```
+   - Words found in the stopwords list are removed from the main array until no stopwords remain.
 
-When the words appear in the StopWords list, they are removed from the main sentence array.
+- **Feature Extraction:**
+   - The TF-IDF (Term Frequency-Inverse Document Frequency) method is used to extract features from the preprocessed dataset.
+   - Cleaned data is transformed into numerical vectors for classification.
+   - Utilized `TfidfVectorizer` from the Scikit-learn library with the following configurations:
+     - **Sub-linear DF:** Set to True to apply a logarithmic scale for frequency.
+     - **Min DF:** Defines the minimum number of documents a word must appear in to be included.
+     - **Norm:** Set to L2 to ensure all feature vectors have the same Euclidean norm.
+     - **N-gram Range:** Set to (1, 2) to include both unigrams and bigrams.
 
-Repeat the above sequence of steps until the tokenized array's last entry is not matched.
+By following these steps, the project effectively prepares the resumes for accurate analysis and classification.
 
-There are no stop words in the resultant array
+## Dataset
+The dataset used in this project is sourced from Kaggle and is in Excel format. It includes the following columns:
+- **ID:** Sequence number of the resume
+- **Category:** Industry sector associated with the resume
+- **Resume:** Full text of the candidate's CV
 
+## Technologies Used
+- Python
+- NLTK for natural language processing
+- Scikit-learn for machine learning
+- Pandas for data manipulation
+- NumPy for numerical operations
 
-The next step is feature extraction. TfIdf was used to extract features from the preprocessed data set. The cleaned data was passed in and the function was extracted using TfIdf. Taking the input as a vector of numbers, the classification model is processed based on machine learning or a learning algorithm. The variable-length input text was not processed by the
-ML-based classifier. Accordingly, in the preparation process, the text is changed to an essential vector form of the same length There are several methods for extracting
-characteristics, including tf-idf, and others. Using the scikit learn library function, we generated tf-idf for each term.
-To calculate a tf-idf vector,we use TfidfVectorizer:
-Sub-linear df is set to True to utilise a logarithmic form for frequency.
-Min df is the minimal number of documents in which a word must appear in order to be saved.
-The norm is set to l2 to ensure that all feature vectors have the same euclidean norm.
-The gramme range is set to (n1, n2), with n1 equaling 1 and n2 equaling 2. It means that both unigrams and bigrams are taken into account.
+## Installation
+ - Clone the repository:
+   ```bash
+   git clone https://github.com/AyushAggarwal1/Resume-Selector.git
+   cd Resume-selector
