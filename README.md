@@ -65,3 +65,7 @@ The dataset used in this project is sourced from Kaggle and is in Excel format. 
    ```bash
    git clone https://github.com/AyushAggarwal1/Resume-Selector.git
    cd Resume-selector
+
+## Report (Results)
+
+[Research Paper](https://drive.google.com/file/d/169JzoSc4Id69lrsHUVpS9xb9gdKA9QpK/view?usp=drive_link)  
